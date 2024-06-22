@@ -28,4 +28,14 @@ public struct GridData
     {
         return !op1.Equals(op2);
     }
+
+    public override int GetHashCode()
+    {
+        return base.GetHashCode();
+    }
+
+    public override bool Equals(object obj)
+    {
+        return base.Equals(obj);
+    }
 }
