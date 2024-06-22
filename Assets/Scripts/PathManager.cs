@@ -137,7 +137,6 @@ public class PathManager : MonoBehaviour
             }
         }
         
-        
         // var neighbourGrid1 = activeGrid.Position + Vector2.up;    // Up Neighbour
         // var neighbourGrid2 = activeGrid.Position + Vector2.down;  // Down Neighbour
         // var neighbourGrid3 = activeGrid.Position + Vector2.left;  // Left Neighbour
