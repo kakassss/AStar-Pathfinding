@@ -18,20 +18,12 @@ public class PathManager : MonoBehaviour
     private void Awake()
     {
         _gridDatas = new GridData[_height, _weight];
-        
         CreateGridData();
     }
 
     private void Start()
     {
         FindPath();
-        
-        Vector2 vector1 = new Vector2(1, 2);
-        Vector2 vector2 = new Vector2(2, 1);
-
-        float distance = Vector2.Distance(vector1, vector2);
-        Debug.Log("onur " + distance);
-
     }
 
     private void CreateGridData()
@@ -51,15 +43,12 @@ public class PathManager : MonoBehaviour
     {
         _path = new List<GridData>();
         
-        
         GridData startGridData;
         GridData endgridData;
         
         //Example path
         startGridData = _gridDatas[1, 1];
         endgridData = _gridDatas[3, 2];
-        
-        Debug.Log("startGridData " + startGridData.Position);
         
         while (startGridData != endgridData)
         {
@@ -78,13 +67,9 @@ public class PathManager : MonoBehaviour
             
             var nextGridData = SelectMinimumFCost(startGridData.GridNode.NeighbourNodes);
             
-            nextGridData.GridNode.connectedGridData = startGridData;
             _path.Add(nextGridData);
             startGridData = nextGridData;
-            
-            Debug.Log("current grid " + startGridData.Position);
         }
-        Debug.Log("end grid" + startGridData.Position);
         
         OnPathPositionCompleted?.Invoke(_path);
     }
@@ -120,7 +105,7 @@ public class PathManager : MonoBehaviour
                 }
             }
         }
-
+        
         return selectedData;
     }
 
@@ -136,36 +121,12 @@ public class PathManager : MonoBehaviour
                 _potentialGridNeigbourList.Add(grid.Position);
             }
         }
-        
-        // var neighbourGrid1 = activeGrid.Position + Vector2.up;    // Up Neighbour
-        // var neighbourGrid2 = activeGrid.Position + Vector2.down;  // Down Neighbour
-        // var neighbourGrid3 = activeGrid.Position + Vector2.left;  // Left Neighbour
-        // var neighbourGrid4 = activeGrid.Position + Vector2.right; // Right Neighbour
-        //
-        // var neighbourGrid5 = activeGrid.Position + Vector2.up + Vector2.left;    // Up-Left Neighbour  
-        // var neighbourGrid6 = activeGrid.Position + Vector2.up + Vector2.right;   // Up-Right Neighbour
-        // var neighbourGrid7 = activeGrid.Position + Vector2.down + Vector2.left;  // Down-Left Neighbour
-        // var neighbourGrid8 = activeGrid.Position + Vector2.down + Vector2.right; // Down-Right Neighbour
-        //
-        // _potentialGridNeigbourList.Add(neighbourGrid1);
-        // _potentialGridNeigbourList.Add(neighbourGrid2);
-        // _potentialGridNeigbourList.Add(neighbourGrid3);
-        // _potentialGridNeigbourList.Add(neighbourGrid4);
-        // _potentialGridNeigbourList.Add(neighbourGrid5);
-        // _potentialGridNeigbourList.Add(neighbourGrid6);
-        // _potentialGridNeigbourList.Add(neighbourGrid7);
-        // _potentialGridNeigbourList.Add(neighbourGrid8);
-
 
         foreach (var potGrid in _potentialGridNeigbourList.Where(IsInGrid))
         {
             activeGrid.GridNode.NeighbourNodes.Add(GetGridDataFromPosition(potGrid));
         }
-
-        foreach (var grid in activeGrid.GridNode.NeighbourNodes)
-        {
-            //Debug.Log("neigbour gridsss " + grid.Position);
-        }
+        
     }
 
     private Vector2 GetPositionFromGridData(GridData gridData)
@@ -243,7 +204,6 @@ public class PathManager : MonoBehaviour
                 crossGridCounter++;
             }
             maxGridValue -= crossGridCounter;
-
             
             activeGrid.GridNode.HCost += crossGridCounter * CROSSCOST;
             activeGrid.GridNode.HCost += Mathf.FloorToInt(maxGridValue * STRAIGHTCOST);
