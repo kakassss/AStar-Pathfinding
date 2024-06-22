@@ -1,5 +1,4 @@
 using System.Collections.Generic;
-
 public class Node
 {
     public int GCost;
