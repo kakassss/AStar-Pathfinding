@@ -211,37 +211,3 @@ public class PathManager : MonoBehaviour
         
     }
 }
-
-
-// else
-// {
-//     if (absGridPos.x == 0)
-//     {
-//         if (GCost)
-//         {
-//             var distanceX = Mathf.Abs(targetGrid.Position.x);
-//             activeGrid.GridNode.GCost += Mathf.FloorToInt(distanceX * STRAIGHTCOST);
-//         }
-//         if (HCost)
-//         {
-//             var distanceX = Mathf.Abs(targetGrid.Position.x);
-//             activeGrid.GridNode.HCost += Mathf.FloorToInt(distanceX * STRAIGHTCOST);
-//         }
-//                 
-//     }
-//         
-//     if (absGridPos.y == 0)
-//     {
-//         if (GCost)
-//         {
-//             var distanceY = Mathf.Abs(targetGrid.Position.y);
-//             activeGrid.GridNode.GCost += Mathf.FloorToInt(distanceY * STRAIGHTCOST);
-//                     
-//         }
-//         if (HCost)
-//         {
-//             var distanceY = Mathf.Abs(targetGrid.Position.y);
-//             activeGrid.GridNode.HCost += Mathf.FloorToInt(distanceY * STRAIGHTCOST);
-//         }
-//     }
-// }
